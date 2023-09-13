@@ -127,7 +127,27 @@ function validate() {
   }
 
   return true;
+  
 }
+
+// Récupérer les éléments des deux formulaires
+const reserveForm = document.forms["reserve"];
+const confirmationForm = document.getElementById("confirmation-form");
+
+// Écouter l'événement de soumission du formulaire de réservation
+reserveForm.addEventListener("submit", function (event) {
+    // Empêcher l'envoi du formulaire par défaut
+    event.preventDefault();
+    
+    // Vous pouvez ici effectuer une validation supplémentaire si nécessaire
+
+    // Masquer le formulaire de réservation
+    reserveForm.style.display = "none";
+
+    // Afficher le formulaire de confirmation
+    confirmationForm.style.display = "block";
+});
+
 
 
 

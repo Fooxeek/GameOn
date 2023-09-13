@@ -80,6 +80,9 @@ img {
   border: 2px solid red;
 }
 
+#confirmation-form {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
