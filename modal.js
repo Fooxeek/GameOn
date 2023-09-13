@@ -11,7 +11,7 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeModalBtn = document.querySelector(".close"); // Sélectionnez le bouton de fermeture
+const closeModalBtn = document.querySelector(".close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -110,8 +110,6 @@ function validate() {
     birthdateInput.focus();
     return false;
   }
-
-  // Validation de la quantité de tournois
 
   // Réinitialisez le message d'erreur
   quantityError.style.display = "none";
