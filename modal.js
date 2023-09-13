@@ -44,7 +44,8 @@ function validate() {
   const emailInput = document.getElementById("email");
   const birthdateInput = document.getElementById("birthdate");
   const quantityInput = document.getElementById("quantity");
-  const checkboxInput = document.getElementById("checkbox1"); // Ajout de la case à cocher
+  const locationInputs = document.querySelectorAll('input[name="location"]');
+  const checkboxInput = document.getElementById("checkbox1");
 
   const firstName = firstNameInput.value;
   const lastName = lastNameInput.value;
@@ -57,14 +58,16 @@ function validate() {
   const emailError = document.getElementById("emailError");
   const birthdateError = document.getElementById("birthdateError");
   const quantityError = document.getElementById("quantityError");
-  const checkboxError = document.getElementById("checkboxError"); // Ajout du message d'erreur pour la case à cocher
+  const locationError = document.getElementById("radioError");
+  const checkboxError = document.getElementById("checkboxError");
 
   // Réinitialisez les messages d'erreur et les bordures rouges
   firstNameError.style.display = "none";
   lastNameError.style.display = "none";
   emailError.style.display = "none";
   birthdateError.style.display = "none";
-  checkboxError.style.display = "none"; // Masquez le message d'erreur par défaut pour la case à cocher
+  locationError.style.display = "none";
+  checkboxError.style.display = "none";
 
   // Réinitialisez les bordures rouges pour les champs de saisie
   firstNameInput.classList.remove("invalid-input");
@@ -89,6 +92,7 @@ function validate() {
     lastNameInput.focus();
     return false;
   }
+
   // Validation de l'e-mail
   if (!isValidEmail(email)) {
     // L'e-mail n'est pas valide, affichez le message d'erreur
@@ -119,6 +123,21 @@ function validate() {
     return false;
   }
 
+  // Validation de la sélection de la ville
+  let locationSelected = false;
+  for (const locationInput of locationInputs) {
+    if (locationInput.checked) {
+      locationSelected = true;
+      break;
+    }
+  }
+
+  if (!locationSelected) {
+    // Aucune ville n'a été sélectionnée, affichez le message d'erreur
+    locationError.style.display = "block";
+    return false;
+  }
+
   // Validation de la case à cocher (conditions d'utilisation)
   if (!checkboxInput.checked) {
     // La case à cocher n'est pas cochée, affichez le message d'erreur
@@ -127,34 +146,25 @@ function validate() {
   }
 
   return true;
-  
 }
+
 
 // Récupérer les éléments des deux formulaires
 const reserveForm = document.forms["reserve"];
-const confirmationForm = document.getElementById("confirmation-form");
+const confirmationForm = document.forms["confirmation"];
+const submitButton = document.getElementsByClassName("btn-submit")[0];
 
 // Écouter l'événement de soumission du formulaire de réservation
-reserveForm.addEventListener("submit", function (event) {
-    // Empêcher l'envoi du formulaire par défaut
-    event.preventDefault();
-    
-    // Vous pouvez ici effectuer une validation supplémentaire si nécessaire
+submitButton.addEventListener("click", function (event) {
+  // Empêcher l'envoi du formulaire par défaut
+  event.preventDefault();
 
-    // Masquer le formulaire de réservation
+  // Validez le formulaire avant de le soumettre
+  if (validate()) {
+    // Le formulaire est valide, masquez le formulaire de réservation
     reserveForm.style.display = "none";
 
-    // Afficher le formulaire de confirmation
+    // Affichez le formulaire de confirmation
     confirmationForm.style.display = "block";
+  }
 });
-
-
-
-
-
-
-
-
-
-
-
