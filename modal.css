@@ -68,6 +68,19 @@ img {
   display: none;
 }
 
+.error-message {
+  display: none;
+  color: red;
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.text-control.invalid-input {
+  border: 2px solid red;
+}
+
+
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
   .topnav a.icon {

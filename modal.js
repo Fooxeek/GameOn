@@ -39,57 +39,101 @@ function isValidEmail(email) {
 
 // Fonction pour valider le formulaire
 function validate() {
+  const firstNameInput = document.getElementById("first");
+  const lastNameInput = document.getElementById("last");
   const emailInput = document.getElementById("email");
-  const email = emailInput.value;
+  const birthdateInput = document.getElementById("birthdate");
+  const quantityInput = document.getElementById("quantity");
+  const checkboxInput = document.getElementById("checkbox1"); // Ajout de la case à cocher
 
-  if (!isValidEmail(email)) {
-    // L'e-mail n'est pas valide, affichez un message d'erreur ou effectuez une action appropriée
-    alert("L'adresse e-mail n'est pas valide. Veuillez entrer une adresse e-mail valide.");
-    emailInput.focus(); // Mettez le focus sur le champ d'e-mail pour faciliter la correction
-    return false; // Empêche l'envoi du formulaire
+  const firstName = firstNameInput.value;
+  const lastName = lastNameInput.value;
+  const email = emailInput.value;
+  const birthdate = birthdateInput.value;
+  const quantity = parseInt(quantityInput.value);
+
+  const firstNameError = document.getElementById("firstError");
+  const lastNameError = document.getElementById("lastError");
+  const emailError = document.getElementById("emailError");
+  const birthdateError = document.getElementById("birthdateError");
+  const quantityError = document.getElementById("quantityError");
+  const checkboxError = document.getElementById("checkboxError"); // Ajout du message d'erreur pour la case à cocher
+
+  // Réinitialisez les messages d'erreur et les bordures rouges
+  firstNameError.style.display = "none";
+  lastNameError.style.display = "none";
+  emailError.style.display = "none";
+  birthdateError.style.display = "none";
+  checkboxError.style.display = "none"; // Masquez le message d'erreur par défaut pour la case à cocher
+
+  // Réinitialisez les bordures rouges pour les champs de saisie
+  firstNameInput.classList.remove("invalid-input");
+  lastNameInput.classList.remove("invalid-input");
+  emailInput.classList.remove("invalid-input");
+  birthdateInput.classList.remove("invalid-input");
+
+  // Validation du prénom
+  if (firstName.length < 2) {
+    // Le prénom n'est pas valide, affichez le message d'erreur
+    firstNameError.style.display = "block";
+    firstNameInput.classList.add("invalid-input"); // Ajoutez la classe pour mettre en rouge le champ de saisie
+    firstNameInput.focus();
+    return false;
   }
 
-  // L'e-mail est valide, continuez avec le traitement du formulaire
-  return true;
-}
+  // Validation du nom
+  if (lastName.length < 2) {
+    // Le nom n'est pas valide, affichez le message d'erreur
+    lastNameError.style.display = "block";
+    lastNameInput.classList.add("invalid-input"); // Ajoutez la classe pour mettre en rouge le champ de saisie
+    lastNameInput.focus();
+    return false;
+  }
+  // Validation de l'e-mail
+  if (!isValidEmail(email)) {
+    // L'e-mail n'est pas valide, affichez le message d'erreur
+    emailError.style.display = "block";
+    emailInput.classList.add("invalid-input"); // Ajoutez la classe pour mettre en rouge le champ de saisie
+    emailInput.focus();
+    return false;
+  }
 
+  // Validation de la date de naissance
+  if (birthdate.trim() === "") {
+    // La date de naissance est vide, affichez le message d'erreur
+    birthdateError.style.display = "block";
+    birthdateInput.classList.add("invalid-input"); // Ajoutez la classe pour mettre en rouge le champ de saisie
+    birthdateInput.focus();
+    return false;
+  }
 
-// Fonction de validation pour s'assurer qu'au moins un bouton radio est sélectionné
-function validateLocation() {
-  const locationInputs = document.querySelectorAll('input[name="location"]');
-  let isAnyLocationSelected = false;
+  // Validation de la quantité de tournois
 
-  locationInputs.forEach((input) => {
-    if (input.checked) {
-      isAnyLocationSelected = true;
-    }
-  });
+  // Réinitialisez le message d'erreur
+  quantityError.style.display = "none";
 
-  if (!isAnyLocationSelected) {
-    alert("Veuillez sélectionner au moins une option de localisation.");
+  if (isNaN(quantity) || quantity < 0 || quantity > 99) {
+    // La quantité n'est pas valide, affichez le message d'erreur
+    quantityError.style.display = "block";
+    quantityInput.focus();
+    return false;
+  }
+
+  // Validation de la case à cocher (conditions d'utilisation)
+  if (!checkboxInput.checked) {
+    // La case à cocher n'est pas cochée, affichez le message d'erreur
+    checkboxError.style.display = "block";
     return false;
   }
 
   return true;
 }
 
-// Fonction de validation pour le formulaire
-function validateForm(event) {
-  const checkBoxInput = document.getElementById("checkbox1");
 
-  if (!checkBoxInput.checked) {
-    alert("Vous devez accepter les conditions d'utilisation pour continuer.");
-    event.preventDefault(); // Empêche l'envoi du formulaire si la case à cocher n'est pas cochée
-  }
-}
 
-// Attachez la fonction validateForm au formulaire lorsque le document est prêt
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form[name='reserve']");
-  if (form) {
-    form.addEventListener("submit", validateForm);
-  }
-});
+
+
+
 
 
 
