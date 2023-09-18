@@ -25,6 +25,8 @@ function launchModal() {
 closeModalBtn.addEventListener("click", closeModal);
 
 function closeModal() {
+  const reserveForm = document.forms["reserve"];
+  reserveForm.reset();
   modalbg.style.display = "none";
 }
 
