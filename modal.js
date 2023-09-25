@@ -78,7 +78,7 @@ function validate() {
   birthdateInput.classList.remove("invalid-input");
 
   // Validation du prénom
-  if (firstName.length < 2) {
+  if (firstName.length < 2 || !/^[A-Za-z\-]+$/.test(firstName)) {
     // Le prénom n'est pas valide, affichez le message d'erreur
     firstNameError.style.display = "block";
     firstNameInput.classList.add("invalid-input"); // Ajoutez la classe pour mettre en rouge le champ de saisie
@@ -87,7 +87,7 @@ function validate() {
   }
 
   // Validation du nom
-  if (lastName.length < 2) {
+  if (lastName.length < 2 || !/^[A-Za-z\-]+$/.test(lastName)) {
     // Le nom n'est pas valide, affichez le message d'erreur
     lastNameError.style.display = "block";
     lastNameInput.classList.add("invalid-input"); // Ajoutez la classe pour mettre en rouge le champ de saisie
@@ -147,7 +147,6 @@ function validate() {
 
   return true;
 }
-
 
 // Récupérer les éléments des deux formulaires
 const reserveForm = document.forms["reserve"];
