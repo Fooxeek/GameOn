@@ -70,6 +70,7 @@ function validate() {
   birthdateError.style.display = "none";
   locationError.style.display = "none";
   checkboxError.style.display = "none";
+  quantityError.style.display = "none";
 
   // Réinitialisez les bordures rouges pour les champs de saisie
   firstNameInput.classList.remove("invalid-input");
@@ -114,8 +115,6 @@ function validate() {
   }
 
   // Réinitialisez le message d'erreur
-  quantityError.style.display = "none";
-
   if (isNaN(quantity) || quantity < 0 || quantity > 99) {
     // La quantité n'est pas valide, affichez le message d'erreur
     quantityError.style.display = "block";
@@ -154,7 +153,7 @@ const confirmationForm = document.forms["confirmation"];
 const submitButton = document.getElementsByClassName("btn-submit")[0];
 
 // Écouter l'événement de soumission du formulaire de réservation
-submitButton.addEventListener("click", function (event) {
+reserveForm.addEventListener("submit", function (event) {
   // Empêcher l'envoi du formulaire par défaut
   event.preventDefault();
 
