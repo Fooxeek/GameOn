@@ -2,6 +2,7 @@ function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
+    closeModal();
   } else {
     x.className = "topnav";
   }
@@ -149,7 +150,7 @@ function validate() {
 
 // Récupérer les éléments des deux formulaires
 const reserveForm = document.forms["reserve"];
-const confirmationForm = document.forms["confirmation"];
+const confirmationForm = document.getElementById("confirmation-form");
 const submitButton = document.getElementsByClassName("btn-submit")[0];
 
 // Écouter l'événement de soumission du formulaire de réservation
@@ -157,7 +158,7 @@ reserveForm.addEventListener("submit", function (event) {
   // Empêcher l'envoi du formulaire par défaut
   event.preventDefault();
 
-  // Validez le formulaire avant de le soumettre
+  // Valider le formulaire avant de le soumettre
   if (validate()) {
     // Le formulaire est valide, masquez le formulaire de réservation
     reserveForm.style.display = "none";
