@@ -170,7 +170,7 @@ reserveForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
   // Valider le formulaire avant de le soumettre
-  if (validate()) {
+  if (validate(event)) {
     // Le formulaire est valide, masquez le formulaire de réservation
     reserveForm.style.display = "none";
 

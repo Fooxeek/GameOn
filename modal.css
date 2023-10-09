@@ -189,6 +189,7 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+  overflow-y: auto;
 }
 
 .modal-body {
@@ -603,7 +604,7 @@ footer {
   .content {
     margin: 0;
     max-width: none;
-    height: 100%;
+    height: 92%;
   }
 
   .topnav a {
