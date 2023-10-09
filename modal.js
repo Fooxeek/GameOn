@@ -13,6 +13,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeModalBtn = document.querySelector(".close");
+const closeButton = document.querySelector(".btn-close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -30,6 +31,16 @@ function closeModal() {
   reserveForm.reset();
   modalbg.style.display = "none";
 }
+
+// Écoutez l'événement click sur le bouton "Fermer"
+closeButton.addEventListener("click", function () {
+  // Réinitialisez le formulaire
+  const reserveForm = document.forms["reserve"];
+  reserveForm.reset();
+  reserveForm.style.display = "block";
+  confirmationForm.style.display = "none";
+  closeModal();
+});
 
 // Fonction pour vérifier si l'e-mail est valide
 function isValidEmail(email) {
